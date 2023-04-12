@@ -22,7 +22,7 @@ public class MyJavaZoneBean implements Serializable{
 	  v1.setEdad("18"); 
 	  v1.setPais("Colombia Medellín"); 
 	  
-	  Visitantes v2=new Visitantes();
+	  Visitantes v2=new Visitantes();  
 	  v2.setNombre("Pablo");
 	  v2.setApellido("Rodriguez");
 	  v2.setEdad("22");
@@ -37,7 +37,7 @@ public class MyJavaZoneBean implements Serializable{
 	  Visitantes v4=new Visitantes();
 	  v4.setNombre("Carlos");
 	  v4.setApellido("Rodriguez");
-	  v4.setEdad("22");
+	  v4.setEdad("22"); 
 	  v4.setPais("México Durango");
 	  
 	  Visitantes v5=new Visitantes();
@@ -165,6 +165,9 @@ public class MyJavaZoneBean implements Serializable{
 
 	 public void setVisitantes(ArrayList visitantes) {
 	  this.visitantes = visitantes;
+	 }
+	 public void updateVisitantes() {
+		 
 	 }
 	 
 	

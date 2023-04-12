@@ -12,25 +12,15 @@
 <h:form>
  <h:commandButton value="Generar Listado" action="#{mjzBean.cargarListado()}" />
  <br />
- <p:dataTable id="tbl" var="visitante" value="#{mjzBean.visitantes}"
- 			 paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
- 			 resizableColumns="true" editable="true">
-     <p:column headerText="Nombre">
-     	<f:facet name="header">
+ <p:dataTable id="tbl" var="visitante" value="#{mjzBean.visitantes}" paginator="true" rows="10" rowsPerPageTemplate="5,10,15">
+ 
+     <p:column>
+         <f:facet name="header">
              <h:outputText value="Nombre" />
          </f:facet>
-     	<p:cellEditor>
-         <f:facet name="output">
-         	<h:outputText value="#{visitante.nombre}" />
-         </f:facet>
-         <f:facet name="input">
-         	<p:inputText required="true">
-         		
-         	</p:inputText>
-         </f:facet> 
-     	</p:cellEditor>  
+         <h:outputText value="#{visitante.nombre}" /> 
      </p:column>
-      
+     
      <p:column>
          <f:facet name="header">
              <h:outputText value="Apellido" />
@@ -44,26 +34,23 @@
          </f:facet>
          <h:outputText value="#{visitante.edad}" />
      </p:column>
-  
-     <p:column>
-     	<f:facet name="header">
-     		<h:outputText value="País" />	
-     	</f:facet>
-        <h:outputText value="#{visitante.pais}" />
+     
+     
+     <p:column headerText="#{msg.tablaPais}">
+         <h:outputText value="#{visitante.pais}" />
      </p:column>
      
-     <p:column name="header" style="width:32px" exportable="false">
-     	<f:facet name="header">
-     		<h:outputText value="Editar" />	
-     	</f:facet>
-     	<p:rowEditor/>
+     <p:column headerText="#{msg.tablaPais}">
+         <h:inputText value="#{visitante.pais}" />
      </p:column>
+     
  </p:dataTable>
  
  <br />  
  
-    <p:commandButton value="xSubmit" styleClass="mr-2 mb-2" ajax="false">
-    <p:dataExporter type="xls" target="tbl" fileName="visitantes" postProcessor="#{customizedDocumentsView.postProcessXLS}"></p:dataExporter>
+    <p:commandButton value="Download" styleClass="mr-2 mb-2" ajax="false">
+    <p:dataExporter type="xls" target="tbl" fileName="visitantes" 
+    		postProcessor="#{customizedDocumentsView.postProcessXLS}"></p:dataExporter>
     </p:commandButton>
     
      <h:commandLink value="Exportar">

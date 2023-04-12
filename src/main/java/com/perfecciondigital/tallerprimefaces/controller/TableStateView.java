@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
+import org.primefaces.context.RequestContext;
 
 import com.perfecciondigital.tallerprimefaces.model.Car;
 
