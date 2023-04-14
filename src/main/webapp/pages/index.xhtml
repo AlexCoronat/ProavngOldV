@@ -10,22 +10,22 @@
 <h:head></h:head>
 <h:body>
 <h:form>
- <h:commandButton value="Generar Listado" action="#{mjzBean.cargarListado()}" />
+ <h:commandButton value="Generar Listado" action="#{cargador.cargarListado()}" />
  <br />
- <p:dataTable id="tbl" var="visitante" value="#{mjzBean.visitantes}"
+ <p:dataTable id="tbl" var="visitante" value="#{cargador.visitantes}"
  			 paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
  			 resizableColumns="true" editable="true">
      <p:column headerText="Nombre">
      	<f:facet name="header">
-             <h:outputText value="Nombre" />
-         </f:facet>
-     	<p:cellEditor>
-         <f:facet name="output">
+            <h:outputText value="Nombre" />
+        </f:facet>
+         
+     	<p:cellEditor id="clledt">
+     	<f:facet name="output">
          	<h:outputText value="#{visitante.nombre}" />
          </f:facet>
          <f:facet name="input">
-         	<p:inputText required="true">
-         		
+         	<p:inputText required="true" value="#{visitante.nombre}">
          	</p:inputText>
          </f:facet> 
      	</p:cellEditor>  

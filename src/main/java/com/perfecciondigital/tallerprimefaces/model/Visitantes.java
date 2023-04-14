@@ -6,7 +6,24 @@ public class Visitantes implements Comparable{
 	 private String apellido;
 	 private String edad;
 	 private String pais;
-	 public String getNombre() {
+	 private String nombreVista;
+	 private String apellidoVista;
+	 private String edadVista;
+	 private String paisVista;
+	 
+	 public Visitantes() {
+		super();
+	}
+	
+	public Visitantes(String nombre, String apellido, String edad, String pais) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.pais = pais;
+	}
+		
+	public String getNombre() {
 	  return nombre;
 	 }  
 	 public void setNombre(String nombre) {
@@ -33,7 +50,37 @@ public class Visitantes implements Comparable{
 	@Override
 	public int compareTo(Object o) {
 		return 0;
-	} 
-	
-	
+	}
+
+	public String getNombreVista() {
+		return nombreVista;
+	}
+
+	public void setNombreVista(String nombreVista) {
+		this.nombreVista = nombreVista;
+	}
+
+	public String getApellidoVista() {
+		return apellidoVista;
+	}
+
+	public void setApellidoVista(String apellidoVista) {
+		this.apellidoVista = apellidoVista;
+	}
+
+	public String getEdadVista() {
+		return edadVista;
+	}
+
+	public void setEdadVista(String edadVista) {
+		this.edadVista = edadVista;
+	}
+
+	public String getPaisVista() {
+		return paisVista;
+	}
+
+	public void setPaisVista(String paisVista) {
+		this.paisVista = paisVista;
+	} 	
 }
