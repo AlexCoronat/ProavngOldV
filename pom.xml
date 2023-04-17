@@ -79,18 +79,18 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>4.0</version>
+			<version>6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
-			<version>4.0.0</version>
+			<version>6.2.4</version>
 		</dependency>
 		<!-- for CKEditor on Primefaces Extensions -->
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>resources-ckeditor</artifactId>
-			<version>4.0.0</version>
+			<version>6.2.4</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>

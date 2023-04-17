@@ -27,7 +27,6 @@ public class CargadorBean implements Serializable {
 			String pais = generarPaises();
 			visitantes.add(new Visitantes(nombre, apellido, edad, pais));
 		}
-		new CustomizedDocumentsView().setVtes(visitantes);
 	}
 
 	public String generarNombres() {

@@ -72,7 +72,9 @@
         				fileName="visitantes" 
         				postProcessor="#{customizedDocumentsView.postProcessXLS}"/>
     </h:commandLink>
-
+	<p:commandButton value="Exportar excel" action="#{customizedDocumentsView.Exporta()}" styleClass="mr-2 mb-2" ajax="false">
+    
+    </p:commandButton>
 </h:form>
 </h:body>
 </html>
