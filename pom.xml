@@ -22,6 +22,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework/org.springframework.beans -->
+
 		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
 		    <groupId>jakarta.servlet</groupId>
@@ -79,18 +81,18 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>6.2</version>
+			<version>4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
-			<version>6.2.4</version>
+			<version>4.0.0</version>
 		</dependency>
 		<!-- for CKEditor on Primefaces Extensions -->
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>resources-ckeditor</artifactId>
-			<version>6.2.4</version>
+			<version>4.0.0</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>

@@ -21,20 +21,20 @@ public class CargadorBean implements Serializable {
 	public void cargarListado() {
 		
 		for (int i = 0; i < 10; i++) {
-			String nombre = generarNombres();
-			String apellido = generarApellidos();
+			String nombre = generarNombres(i);
+			String apellido = generarApellidos(); 
 			String edad = generarEdades();
 			String pais = generarPaises();
 			visitantes.add(new Visitantes(nombre, apellido, edad, pais));
 		}
 	}
 
-	public String generarNombres() {
+	public String generarNombres(int i) {
 		String dato = "";
 		String[] nombres = { "Andrea", "David", "Baldomero", "Balduino", "Baldwin", "Baltasar", "Barry", "Bartolo",
 				"Bartolomé", "Baruc", "Baruj", "Candelaria", "Cándida", "Canela", "Caridad", "Carina", "Carisa",
 				"Caritina", "Carlota", "Baltazar" };
-		dato = nombres[(int) (Math.floor(Math.random() * ((nombres.length - 1) - 0 + 1) + 0))];
+		dato = nombres[i];
 		return dato;
 	}
 

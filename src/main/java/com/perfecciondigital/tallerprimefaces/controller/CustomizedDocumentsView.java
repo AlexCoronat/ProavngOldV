@@ -104,8 +104,8 @@ public class CustomizedDocumentsView implements Serializable{
 		}
 	}
 	public void Exporta() {
-		vtes = new ArrayList<Visitantes>();
-		String nameFile = "Visitantes";
+		vtes = new CargadorBean().getVisitantes();
+		String nameFile = "Visitantes.xls";
 		Workbook libro = new HSSFWorkbook();
 		Sheet hoja = libro.createSheet("Informe");
 		Row cabecera = hoja.createRow(0);
@@ -131,7 +131,7 @@ public class CustomizedDocumentsView implements Serializable{
 		}
 		try {
 			OutputStream archivo = new FileOutputStream
-					("C:\\Users\\JCORONAT\\eclipse-workspace\\ProavngPF\\Visitantes.xls");
+					("C:\\Users\\JCORONAT\\eclipse-workspace\\ProavngPF\\"+nameFile+"");
 			
 			libro.write(archivo);
 			archivo.close(); 

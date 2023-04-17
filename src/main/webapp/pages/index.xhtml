@@ -5,19 +5,29 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"  >
 
-<f:loadBundle basename="com.perfecciondigital.tallerprimefaces.propiedades.messages" var="msg"></f:loadBundle>
+	<f:loadBundle basename="resources.messages" var="msg"></f:loadBundle>
+
 
 <h:head></h:head>
 <h:body>
 <h:form>
- <h:commandButton value="Generar Listado" action="#{cargador.cargarListado()}" />
+	 <h:commandButton value="Generar Listado" action="#{cargador.cargarListado()}" />
  <br />
+</h:form>
+<h:form id="formLista">
  <p:dataTable id="tbl" var="visitante" value="#{cargador.visitantes}"
  			 paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
- 			 resizableColumns="true" editable="true">
-     <p:column headerText="Nombre">
+ 			 resizableColumns="true" editable="true" lazy="true"
+ 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
+ 			 {PreviousPageLink} {PageLinks} {NextPageLink} 
+ 			 {LastPageLink} {RowsPerPageDropdown}">
+ 	 <p:ajax event="sort" listener="#{filtrosController.onSort}" update=":formLista:tbl"/>			
+	 <p:ajax event="filter" listener="#{session.filterListener}" update=":formLista:tbl" />
+<!-- 	 <p:ajax event="rowEdit" listener="#{FiltrosController.onUpdateFiltro}" update=":formLista:messagesFiltrosEdit" />   -->
+<!-- 	 <p:ajax event="rowEditCancel" listener="#{FiltrosController.onCancelFiltro}" update=":formLista:messagesFiltrosEdit" /> -->
+     <p:column headerText="#{msg.tablaNombre}" sortBy="#{msg.tablaNombre}" filterBy="#{msg.tablaNombre}">
      	<f:facet name="header">
-            <h:outputText value="Nombre" />
+            <h:outputText value="#{msg.tablaNombre}" /> 
         </f:facet>
          
      	<p:cellEditor id="clledt">
@@ -47,7 +57,7 @@
   
      <p:column>
      	<f:facet name="header">
-     		<h:outputText value="País" />	
+     		<h:outputText value="#{msg.tablaPais}" />	
      	</f:facet>
         <h:outputText value="#{visitante.pais}" />
      </p:column>
