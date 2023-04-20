@@ -8,6 +8,8 @@ import com.perfecciondigital.tallerprimefaces.model.Visitantes;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.context.RequestContext;
+
 @ManagedBean(name = "cargador")
 @SessionScoped
 
@@ -16,14 +18,14 @@ public class CargadorBean implements Serializable {
 	private ArrayList<Visitantes> visitantes = new ArrayList<>();
 	
 	private ArrayList<Visitantes> visitantesVista = new ArrayList<>();
-	
-
+	   
+ 
 	public void cargarListado() {
 		
 		for (int i = 0; i < 10; i++) {
 			String nombre = generarNombres(i);
 			String apellido = generarApellidos(); 
-			String edad = generarEdades();
+			int edad = generarEdades();
 			String pais = generarPaises();
 			visitantes.add(new Visitantes(nombre, apellido, edad, pais));
 		}
@@ -48,12 +50,8 @@ public class CargadorBean implements Serializable {
 		return dato;
 	}
 
-	public String generarEdades() {
-		int edad = 0;
-		String dato = "";
-		edad = (int) Math.floor(Math.random() * 70);
-		dato = String.valueOf(edad);
-		return dato;
+	public int generarEdades() {
+		return (int) Math.floor(Math.random() * 70);
 	}
 
 	public String generarPaises() {
@@ -83,7 +81,8 @@ public class CargadorBean implements Serializable {
 	}
 
 	public void updateVisitantes() {
-
+		RequestContext req = RequestContext.getCurrentInstance();
+		req.execute("PF('dialogo').show;");
 	}
 
 }

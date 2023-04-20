@@ -47,14 +47,14 @@ public class OrderBy{
 			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
 				public int compare(Visitantes o1, Visitantes o2) {
-					return o1.getEdad().compareTo(o2.getEdad());
+					return o1.getEdad()-o2.getEdad();
 				}
 			});
 		}else {
 			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
 				public int compare(Visitantes o1, Visitantes o2) {
-					return o2.getEdad().compareTo(o1.getEdad());
+					return o2.getEdad()-o1.getEdad();
 				}
 			});
 		}
@@ -69,7 +69,7 @@ public class OrderBy{
 			});
 		}else {
 			Collections.sort(array, new Comparator<Visitantes>() {
-				@Override
+				@Override 
 				public int compare(Visitantes o1, Visitantes o2) {
 					return o2.getPais().compareTo(o1.getPais());
 				}

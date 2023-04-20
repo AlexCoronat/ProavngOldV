@@ -46,7 +46,7 @@ public class LazyView implements Serializable {
         this.service = service;
     }
      
-    public void onRowSelect(SelectEvent<Car> event) {
+    public void onRowSelect(SelectEvent event) {
         FacesMessage msg = new FacesMessage("Car Selected", event.getObject().getId());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }

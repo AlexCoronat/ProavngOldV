@@ -9,6 +9,7 @@
 
 
 <h:head>
+	<script src="https://kit.fontawesome.com/b2bf6f31bc.js" crossorigin="anonymous"></script>
 	<style>
 		html{
 			
@@ -20,10 +21,42 @@
 			margin-top: 5px;
 			margin-bottom: 5px; 
 		}
-		.boxContent{
-		||||display:inline-block;
+		th span{
+			display: inline-block;
+		}
+		.ui-sortable-column-icon.ui-icon-carat-2-n-s{
+			width:22px;
+			height:24px;
+			background-image: url('sortIcono.png');
+			background-size:contain;
+			background-repeat:no-repeat;
+			background-position:center;
+		}
+		body .ui-datatable thead th .ui-sortable-column-icon.ui-icon-triangle-1-n{
+			width:16px;
+			height:16px;
+			background-image: url('sortAsc.png');
+			background-size:contain;
+			background-repeat:no-repeat;
+			background-position:center;
+		}
+		body .ui-datatable thead th .ui-sortable-column-icon.ui-icon-triangle-1-s{
+			width:16px;
+			height:16px;
+			background-image: url('sortDes.png');
+			background-size:contain;
+			background-repeat:no-repeat;
+			background-position:center;
 		}
 	</style>
+	<script type="text/javascript">
+		function validar(valor,filter) {
+			var valor = parseInt(PF('valida').getJQ().val());
+			if(isNAN(valor)){
+				alert('NO ES UN VALOR NUMERICO!!')}
+			return null;
+		}
+	</script>
 </h:head>
 <h:body>
 	<h:form>
@@ -37,19 +70,14 @@
 		<p:dataTable id="tbl" var="visitante" value="#{cargador.visitantes}"
 			paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
 			paginatorPosition="bottom" resizableColumns="true" editable="true"
-			lazy="true" class="over" scrollable="true"
+			class="over" 
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
  			 {PreviousPageLink} {PageLinks} {NextPageLink} 
  			 {LastPageLink} {RowsPerPageDropdown}">
-			<p:ajax event="sort" listener="#{filtrosController.onSort}"
-				update=":formLista:tbl" />
-			<p:ajax event="filter" listener="#{session.filterListener}"
-				update=":formLista:tbl" />
-			<p:column headerText="" sortBy="#{msg.tablaNombre}"	filterBy="#{msg.tablaNombre}">
+			<p:column id="filtro" headerText="" sortBy="#{visitante.nombre}"  filterBy="#{visitante.nombre}">
 				<f:facet name="header">
 					<h5>Nombre</h5>
 				</f:facet>
-
 				<p:cellEditor id="clledt">
 					<f:facet name="output">
 						<h:outputText value="#{visitante.nombre}" />
@@ -61,21 +89,22 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column sortBy="#{msg.tablaNombre}"	filterBy="#{msg.tablaNombre}">
+			<p:column sortBy="#{visitante.apellido}" filterBy="#{visitante.apellido}">
 				<f:facet name="header">
 					<h5>Apellido</h5>
 				</f:facet>
 				<h:outputText value="#{visitante.apellido}" />
 			</p:column>
 
-			<p:column sortBy="#{msg.tablaNombre}"	filterBy="#{msg.tablaNombre}">
+			<p:column sortBy="#{visitante.edad}" filterBy="#{visitante.edad}" 
+					  filterOptions="true" filterFunction="FilterValidation">
 				<f:facet name="header">
 					<h5>Edad</h5>
 				</f:facet>
 				<h:outputText value="#{visitante.edad}" />
 			</p:column>
 
-			<p:column sortBy="#{msg.tablaNombre}" filterBy="#{msg.tablaNombre}" class="boxContent">
+			<p:column sortBy="#{visitante.pais}" filterBy="#{visitante.pais}" class="boxContent" >
 				<f:facet name="header">
 					<h5>País</h5>
 				</f:facet>
@@ -106,6 +135,7 @@
 			ajax="false">
 
 		</p:commandButton>
+		<p:dialog></p:dialog>
 	</h:form>
 </h:body>
 </html>

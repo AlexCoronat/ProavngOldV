@@ -4,7 +4,7 @@ public class Visitantes implements Comparable{
 
 	 private String nombre;
 	 private String apellido;
-	 private String edad;
+	 private int edad;
 	 private String pais;
 	 private String nombreVista;
 	 private String apellidoVista;
@@ -15,7 +15,7 @@ public class Visitantes implements Comparable{
 		super();
 	}
 	
-	public Visitantes(String nombre, String apellido, String edad, String pais) {
+	public Visitantes(String nombre, String apellido, int edad, String pais) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -35,10 +35,10 @@ public class Visitantes implements Comparable{
 	 public void setApellido(String apellido) {
 	  this.apellido = apellido;
 	 }
-	 public String getEdad() {
+	 public int getEdad() {
 	  return edad;
 	 }
-	 public void setEdad(String edad) {
+	 public void setEdad(int edad) {
 	  this.edad = edad;
 	 }
 	 public String getPais() {
