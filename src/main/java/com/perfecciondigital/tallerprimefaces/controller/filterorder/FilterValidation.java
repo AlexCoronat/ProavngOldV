@@ -4,22 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.primefaces.model.filter.FilterConstraint;
-public class FilterValidation implements FilterConstraint{
+
+import com.perfecciondigital.tallerprimefaces.model.Visitante;
+
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.Validator;
+import jakarta.faces.validator.ValidatorException;
+public class FilterValidation implements Validator<Visitante>{
 
 	@Override
-	public boolean applies(String value, String filter) {
-		if(filter == null || filter.toString().isEmpty()) {
-			return true;
-		}if(value == null) {
-			return true;
-		} 
-		try {
-			Integer.parseInt(filter.toString());
-			Integer.parseInt(value.toString());
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
+	public void validate(FacesContext context, UIComponent component, Visitante value) throws ValidatorException {
+		// TODO Auto-generated method stub
+		
 	}
+
+	
+
+	
 	
 }

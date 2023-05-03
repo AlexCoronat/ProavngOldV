@@ -1,20 +1,21 @@
-package com.perfecciondigital.tallerprimefaces.ordenamiento;
+package com.perfecciondigital.tallerprimefaces.controller.filter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.perfecciondigital.tallerprimefaces.model.Lector;
+import com.perfecciondigital.tallerprimefaces.model.Visitante;
+
 public class TestOrdenamiento {
 
 	public static void main(String[] args) {
-		OrderBy ordenamiento = new OrderBy();
-		ArrayList<Visitantes> lstVisitante = new CargadorDatos().ListaVisitantes();
-		List<Lector> lstLector = new CargadorDatos().ListaLector();
-		String get = "";
+		ArrayList<Visitante> lstVisitante = CargadorDatos.ListaVisitantes();
+		List<Lector> lstLector = CargadorDatos.ListaLector();
 		int count = 0;
-		for (Visitantes vte : lstVisitante) {
+		for (Visitante vte : lstVisitante) {
 			Lector ltr = lstLector.get(count);
-			get = ltr.getServidor();
-			vte.setLector(ltr, get);
+			vte.setLector(new Lector(), ltr.getServidor());
 			count++;
 		}
 
@@ -22,48 +23,50 @@ public class TestOrdenamiento {
 		boolean orden = true;
 		Scanner in = new Scanner(System.in);
 		System.out.println("Ordenar por:");
-		System.out.println("[Nombre] [Apellido] [Edad] [País] [Servidor]");
+		System.err.println("[Nombre] [Apellido] [Edad] [País] [Pasaporte] [Servidor]");
 		opcion = in.next();
-		System.out.println("Teclea 'true' para orden ascendente ó 'false' para orden descendente");
+		System.err.println("Teclea 'true' para orden ascendente ó 'false' para orden descendente");
 		orden = in.nextBoolean();
 		switch (opcion) {
 		case "nombre": {
-			ordenamiento.orderByNombre(lstVisitante, orden);
+			OrderBy.orderByNombre(lstVisitante, orden);
 			for (int i = 0; i < lstVisitante.size(); i++) {
 				System.out.println(lstVisitante.get(i) + "\n");
-
 			}
 		}
 			break;
 		case "apellido": {
-			ordenamiento.orderByApellido(lstVisitante, orden);
+			OrderBy.orderByApellido(lstVisitante, orden);
 			for (int i = 0; i < lstVisitante.size(); i++) {
 				System.out.println(lstVisitante.get(i) + "\n");
-
 			}
 		}
 			break;
 		case "edad": {
-			ordenamiento.orderByEdad(lstVisitante, orden);
+			OrderBy.orderByEdad(lstVisitante, orden);
 			for (int i = 0; i < lstVisitante.size(); i++) {
 				System.out.println(lstVisitante.get(i) + "\n");
-
 			}
 		}
 			break;
 		case "pais": {
-			ordenamiento.orderByPais(lstVisitante, orden);
+			OrderBy.orderByPais(lstVisitante, orden);
 			for (int i = 0; i < lstVisitante.size(); i++) {
 				System.out.println(lstVisitante.get(i) + "\n");
-
+			}
+		}
+			break;
+		case "pasaporte": {
+			OrderBy.orderByPasaporte(lstVisitante, orden);
+			for (int i = 0; i < lstVisitante.size(); i++) {
+				System.out.println(lstVisitante.get(i) + "\n");
 			}
 		}
 			break;
 		case "servidor": {
-			ordenamiento.orderByServidor(lstVisitante, orden);
+			OrderBy.orderByServidor(lstVisitante, orden);
 			for (int i = 0; i < lstVisitante.size(); i++) {
 				System.out.println(lstVisitante.get(i) + "\n");
-
 			}
 		}
 			break;

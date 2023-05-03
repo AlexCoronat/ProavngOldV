@@ -5,76 +5,91 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<f:loadBundle basename="resources.messages" var="msg"></f:loadBundle>
+
 
 
 <h:head>
-	<script src="https://kit.fontawesome.com/b2bf6f31bc.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/b2bf6f31bc.js"
+		crossorigin="anonymous"></script>
 	<style>
-		html{
-			
-		}
-		.over {
-		   font-family: Verdana,Arial,sans-serif;
-		}
-		h5{
-			margin-top: 5px;
-			margin-bottom: 5px; 
-		}
-		th span{
-			display: inline-block;
-		}
-		.ui-sortable-column-icon.ui-icon-carat-2-n-s{
-			width:22px;
-			height:24px;
-			background-image: url('sortIcono.png');
-			background-size:contain;
-			background-repeat:no-repeat;
-			background-position:center;
-		}
-		body .ui-datatable thead th .ui-sortable-column-icon.ui-icon-triangle-1-n{
-			width:16px;
-			height:16px;
-			background-image: url('sortAsc.png');
-			background-size:contain;
-			background-repeat:no-repeat;
-			background-position:center;
-		}
-		body .ui-datatable thead th .ui-sortable-column-icon.ui-icon-triangle-1-s{
-			width:16px;
-			height:16px;
-			background-image: url('sortDes.png');
-			background-size:contain;
-			background-repeat:no-repeat;
-			background-position:center;
-		}
-	</style>
-	<script type="text/javascript">
-		function validar(valor,filter) {
-			var valor = parseInt(PF('valida').getJQ().val());
-			if(isNAN(valor)){
-				alert('NO ES UN VALOR NUMERICO!!')}
-			return null;
-		}
-	</script>
+html {
+	
+}
+
+.over {
+	font-family: Verdana, Arial, sans-serif;
+}
+
+h5 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+th span {
+	display: inline-block;
+}
+/*icono principal*/
+.ui-sortable-column-icon.ui-icon-carat-2-n-s {
+	width: 22px;
+	height: 24px;
+	background-image: url('sortIcono.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+/*icono asc*/
+body .ui-datatable thead th .ui-sortable-column-icon.ui-icon-triangle-1-n
+	{
+	width: 16px;
+	height: 16px;
+	background-image: url('sortAsc.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+/*icono dec*/
+body .ui-datatable thead th .ui-sortable-column-icon.ui-icon-triangle-1-s
+	{
+	width: 16px;
+	height: 16px;
+	background-image: url('sortDes.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+</style>
+<style type="text/css">
+    .value {
+        font-weight: bold;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 </h:head>
 <h:body>
 	<h:form>
 		<h:commandButton value="Generar Listado"
-			action="#{cargador.cargarListado()}" />
+			action="#{cargadorDatos.cargarListado()}" />
 		<br />
 	</h:form>
 	<h:form id="formLista">
-		
+
 		<br />
-		<p:dataTable id="tbl" var="visitante" value="#{cargador.visitantes}"
-			paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
-			paginatorPosition="bottom" resizableColumns="true" editable="true"
-			class="over" 
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} 
- 			 {PreviousPageLink} {PageLinks} {NextPageLink} 
- 			 {LastPageLink} {RowsPerPageDropdown}">
-			<p:column id="filtro" headerText="" sortBy="#{visitante.nombre}"  filterBy="#{visitante.nombre}">
+
+		<p:dataTable id="tbl" var="visitante" value="#{cargadorDatos.visitantes}"
+			resizableColumns="true" editable="true" class="over"
+			sortMode="single" rows="#{cargadorDatos.rows}">
+			<!--  			<p:ajax event="sort" listener="#{order.onSort()}" update=":formLista:tbl"/>  -->
+			<p:column  sortBy="#{visitante.nombre}" filterBy="#{visitante.nombre}"
+				exportable="true" style="display:none;">
+				<f:facet name="header">
+					<h:outputText value="Nombre" />
+				</f:facet>
+				<h:outputText value="#{visitante.nombre}" />
+			</p:column>
+			<p:column id="filtro" headerText="" sortBy="#{visitante.nombre}"
+				filterBy="#{visitante.nombre}" exportable="false">
 				<f:facet name="header">
 					<h5>Nombre</h5>
 				</f:facet>
@@ -89,24 +104,36 @@
 				</p:cellEditor>
 			</p:column>
 
-			<p:column sortBy="#{visitante.apellido}" filterBy="#{visitante.apellido}">
+			<p:column sortBy="#{visitante.apellido}"
+				filterBy="#{visitante.apellido}">
 				<f:facet name="header">
-					<h5>Apellido</h5>
+					<h:outputText value="Apellido" />
 				</f:facet>
 				<h:outputText value="#{visitante.apellido}" />
 			</p:column>
 
-			<p:column sortBy="#{visitante.edad}" filterBy="#{visitante.edad}" 
-					  filterOptions="true" filterFunction="FilterValidation">
-				<f:facet name="header">
-					<h5>Edad</h5>
-				</f:facet>
+			<p:column headerText="Edad" sortBy="#{visitante.edad}" filterBy="#{visitante.edad}" >
 				<h:outputText value="#{visitante.edad}" />
 			</p:column>
-
-			<p:column sortBy="#{visitante.pais}" filterBy="#{visitante.pais}" class="boxContent" >
+			
+			<p:column sortBy="#{visitante.strLectorVista}" filterBy="#{visitante.strLectorVista}"
+				class="boxContent">
 				<f:facet name="header">
-					<h5>País</h5>
+					<h:outputText value="Lector" />
+				</f:facet>
+				<h:outputText value="#{visitante.strLectorVista}" />
+			</p:column>
+			<p:column sortBy="#{visitante.pasaporteVista}" filterBy="#{visitante.pasaporteVista}"
+				class="boxContent">
+				<f:facet name="header">
+					<h:outputText value="Pasaporte" />
+				</f:facet>
+				<h:outputText value="#{visitante.pasaporteVista}" />
+			</p:column>
+			<p:column sortBy="#{visitante.pais}" filterBy="#{visitante.pais}"
+				class="boxContent">
+				<f:facet name="header">
+					<h:outputText value="País" />
 				</f:facet>
 				<h:outputText value="#{visitante.pais}" />
 			</p:column>
@@ -118,7 +145,17 @@
 				<p:rowEditor />
 			</p:column>
 		</p:dataTable>
-
+		<script type="text/javascript">
+			$(document).ready(function() {
+			// Limitar la longitud máxima del filtro de la columna "Nombre" a 10 caracteres
+// 			var nombreFilter = $(".ui-column-filter[aria-label='Edad']");
+// 			nombreFilter.attr("maxlength", 10);
+			
+			// Limitar la longitud máxima del filtro de la columna "Edad" a 3 caracteres
+			var edadFilter = $(".ui-column-filter[aria-label='Edad']");
+			edadFilter.attr("maxlength", 3);
+			});
+		</script>
 		<br />
 
 		<p:commandButton value="xSubmit" styleClass="mr-2 mb-2" ajax="false">
@@ -126,16 +163,80 @@
 				postProcessor="#{customizedDocumentsView.postProcessXLS}"></p:dataExporter>
 		</p:commandButton>
 
-		<h:commandLink value="Exportar">
+		<h:commandLink value="  Exportar  ">
 			<p:dataExporter type="xls" target="tbl" fileName="visitantes"
 				postProcessor="#{customizedDocumentsView.postProcessXLS}" />
 		</h:commandLink>
 		<p:commandButton value="Exportar excel"
 			action="#{customizedDocumentsView.Exporta()}" styleClass="mr-2 mb-2"
 			ajax="false">
-
 		</p:commandButton>
-		<p:dialog></p:dialog>
+		<script type="text/javascript">    
+		    PrimeFaces.locales ['es'] = {
+		        closeText: 'Schließen',
+		        prevText: 'Zurück',
+		        nextText: 'Weiter',
+		        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembere', 'Octubre', 'Noviembre', 'Diciembre' ],
+		        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+		        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'],
+		        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'vie', 'Sab'],
+		        dayNamesMin: ['D', 'L', 'M', 'M ', 'J', 'V ', 'S'],
+		        weekHeader: 'Semana',
+		        firstDay: 1,
+		        isRTL: false,
+		        showMonthAfterYear: false,
+		        yearSuffix:'',
+		        timeOnlyTitle: 'Solo hora',
+		        timeText: 'Tiempo',
+		        hourText: 'Hora',
+		        minuteText: 'Minuto',
+		        secondText: 'Segundo',
+		        currentText: 'Fecha actual',
+		        ampm: false,
+		        month: 'Mes',
+		        week: 'Semana',
+		        day: 'Día',
+		        allDayText: 'Todo el día'
+    };
+</script>
+ 
+	</h:form>
+	<br />
+	<br />
+	<h:form>
+		<p:inputText id="myInput" widgetVar="myInputWidgetVar"
+			onchange="validarInput();" />
+		<p:dialog widgetVar="myDialogWidgetVar" modal="true"
+			header="Validación de Entrada" dynamic="true" closable="false"
+			styleClass="fixbutton">
+			<p:outputLabel value="Valor de texto" />
+			<br />
+			<br />
+			<p:commandButton value="Cerrar"
+				onclick="PF('myDialogWidgetVar').hide();" />
+		</p:dialog>
+		<p:dialog widgetVar="myDialogWidgetVar2" modal="true"
+			header="Validación de Entrada" dynamic="true" closable="false"
+			styleClass="fixbutton">
+			<p:outputLabel value="Valor numérico" />
+			<br />
+			<br />
+			<p:commandButton value="Cerrar"
+				onclick="PF('myDialogWidgetVar2').hide();" />
+		</p:dialog>
+		<script type="text/javascript">
+			function validarInput() {
+				var valor = PF('myInputWidgetVar').getJQ().val();
+				
+				if (isNaN(valor)) {
+					// El valor NO es un número, es texto
+					PF('myDialogWidgetVar').show();
+				} else {
+					// El valor ES un número
+					PF('myDialogWidgetVar2').show();
+				}
+			}
+		</script>
 	</h:form>
 </h:body>
 </html>

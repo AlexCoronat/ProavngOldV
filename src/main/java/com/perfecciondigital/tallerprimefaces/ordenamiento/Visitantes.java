@@ -1,7 +1,7 @@
 package com.perfecciondigital.tallerprimefaces.ordenamiento;
 import java.util.List;
 
-public class Visitante {
+public class Visitantes {
 
 	private String nombre;
 	private String apellido;

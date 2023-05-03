@@ -5,39 +5,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CargadorDatos {
-	public ArrayList<Visitante> ListaVisitantes(){
+	public ArrayList<Visitantes> ListaVisitantes(){
 		
-		Visitante v1=new Visitante();
+		Visitantes v1=new Visitantes();
 		v1.setNombre(null);
 		v1.setApellido("Perez");
 		v1.setEdad(18);
 		v1.setPais("Colombia Medellín");
 		  
-		Visitante v2=new Visitante();
+		Visitantes v2=new Visitantes();
 		v2.setNombre("Pablo");
 		v2.setApellido("Rodriguez");
 		v2.setEdad(22);
 		v2.setPais("Madrid España");
 		  
-		Visitante v3=new Visitante();
+		Visitantes v3=new Visitantes();
 		v3.setNombre("Marcos");
 		v3.setApellido("Velazquez");
 		v3.setEdad(22);
 		v3.setPais("México Guanajuato León.");
 		  
-		Visitante v4=new Visitante();
+		Visitantes v4=new Visitantes();
 		v4.setNombre(null);
 		v4.setApellido("Rodriguez");
 		v4.setEdad(22);
 		v4.setPais("México Durango"); 
 		  
-		Visitante v5=new Visitante();
+		Visitantes v5=new Visitantes();
 		v5.setNombre("Leslie");
 		v5.setApellido("Mon");
 		v5.setEdad(23);
 		v5.setPais("México");
 		
-		ArrayList<Visitante> lstVisitante = new ArrayList<Visitante>();
+		ArrayList<Visitantes> lstVisitante = new ArrayList<Visitantes>();
 		
 		lstVisitante.add(v1);
 		lstVisitante.add(v2);

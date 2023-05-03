@@ -33,18 +33,16 @@ import org.primefaces.component.celleditor.CellEditor;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.component.export.ExcelExporter;
 
-import com.perfecciondigital.tallerprimefaces.model.Visitantes;
-
-
+import com.perfecciondigital.tallerprimefaces.model.Visitante;
 
 @Named
 @RequestScoped
 
-public class CustomizedDocumentsView implements Serializable{
-	static ArrayList<Visitantes> vtes;
-	
+public class CustomizedDocumentsView implements Serializable {
+	static ArrayList<Visitante> vtes;
+
 	public void postProcessXLS(Object document) {
-		
+
 		HSSFWorkbook wb = (HSSFWorkbook) document;
 		HSSFSheet sheet = wb.getSheetAt(0);
 		HSSFRow header = sheet.getRow(0);
@@ -73,45 +71,33 @@ public class CustomizedDocumentsView implements Serializable{
 		cellStyleHeader.setFillForegroundColor(HSSFColor.HSSFColorPredefined.CORNFLOWER_BLUE.getIndex());
 		cellStyleHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-		
-		
-		for (int i = 0; i < header.getPhysicalNumberOfCells(); i++) { 
+		for (int i = 0; i < header.getPhysicalNumberOfCells(); i++) {
 			HSSFCell cell = header.getCell(i);
 
 			cell.setCellStyle(cellStyleHeader);
 		}
 		for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
 			HSSFRow row = sheet.getRow(i);
-			System.out.println(row);
-			try {
-				System.out.println(vtes.get(i));
-			} catch (NullPointerException e) {
-				System.err.println("La lista no se ha cargado");
-			}
 			for (int j = 0; j < row.getPhysicalNumberOfCells(); j++) {
+				String strConcatena = "";
+				HSSFCell cell = header.getCell(j);
 				HSSFCell cellContent = row.getCell(j);
-				
-				if (cellContent.getCellType() == cellContent.CELL_TYPE_STRING) {     
-					String content = cellContent.getStringCellValue().toString();
-					int index = content.indexOf("org.primefaces.component.celleditor");
-					if (index != -1) {
-						content = content.substring(35, 55);
-						cellContent.setCellValue(content);
-					}
-				}
+				strConcatena = cell.getStringCellValue() + "\n" + cellContent.getStringCellValue();
+				cellContent.setCellValue(strConcatena);
+				cellStyleContent.setWrapText(true);
 				cellContent.setCellStyle(cellStyleContent);
 			}
 		}
 	}
 	public void Exporta() {
-		vtes = new CargadorBean().getVisitantes();
+		vtes = new Cargador().getVisitantes();
 		String nameFile = "Visitantes.xls";
 		Workbook libro = new HSSFWorkbook();
 		Sheet hoja = libro.createSheet("Informe");
 		Row cabecera = hoja.createRow(0);
 		String[] valorCabecera = {"Nombre","Apellido","Edad","Pais"};
 		try {
-			for(Visitantes vtesItem: vtes) {
+			for(Visitante vtesItem: vtes) {
 				System.out.println(vtesItem);
 			}
 		} catch (NullPointerException e) {

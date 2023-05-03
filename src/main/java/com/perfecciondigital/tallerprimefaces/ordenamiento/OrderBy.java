@@ -7,11 +7,11 @@ import java.util.List;
 public class OrderBy{
 	//Ordenamiento para clase visitante
 	public static void isNull() {}
-	public void orderByNombre(ArrayList<Visitante> array,boolean orden) {
+	public void orderByNombre(ArrayList<Visitantes> array,boolean orden) {
 		if(orden) {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					String aux1, aux2;
 					if(o1.getNombre() == null) {
 						aux1 = "";
@@ -27,77 +27,77 @@ public class OrderBy{
 				}
 			});
 		}else {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o2.getNombre().compareTo(o1.getNombre());
 				}
 			});
 		}
 	}
-	public void orderByApellido(ArrayList<Visitante> array,boolean orden) {
+	public void orderByApellido(ArrayList<Visitantes> array,boolean orden) {
 		if(orden) {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o1.getApellido().compareTo(o2.getApellido());
 				}
 			});
 		}else {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o2.getApellido().compareTo(o1.getApellido());
 				}
 			});
 		}
 	}
-	public void orderByEdad(ArrayList<Visitante> array,boolean orden) {
+	public void orderByEdad(ArrayList<Visitantes> array,boolean orden) {
 		if(orden) {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o1.getEdad() - o2.getEdad();
 				}
 			});
 		}else {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o2.getEdad() - o1.getEdad();
 				}
 			});
 		}
 	}
-	public void orderByPais(ArrayList<Visitante> array,boolean orden) {
+	public void orderByPais(ArrayList<Visitantes> array,boolean orden) {
 		if(orden) {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o1.getPais().compareTo(o2.getPais());
 				}
 			});
 		}else {
-			Collections.sort(array, new Comparator<Visitante>() {
+			Collections.sort(array, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o2.getPais().compareTo(o1.getPais());
 				}
 			});
 		}
 	}
-	public void orderByServidor(List<Visitante> lstLector,boolean orden) {
+	public void orderByServidor(List<Visitantes> lstLector,boolean orden) {
 		if(orden) {
-			Collections.sort(lstLector, new Comparator<Visitante>() {
+			Collections.sort(lstLector, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o1.getLector().getServidor().compareTo(o2.getLector().getServidor());
 				}
 			});
 		}else {
-			Collections.sort(lstLector, new Comparator<Visitante>() {
+			Collections.sort(lstLector, new Comparator<Visitantes>() {
 				@Override
-				public int compare(Visitante o1, Visitante o2) {
+				public int compare(Visitantes o1, Visitantes o2) {
 					return o2.getLector().getServidor().compareTo(o1.getLector().getServidor());
 
 				}
